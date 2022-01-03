@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import HomeworkCard from './HomeworkCard';
 import { connect } from 'react-redux';
 import { homeworkListActions } from '../redux/actions/homeworkListActions';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@mui/material';
 
 const useStyles = makeStyles({
 	root: {

@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { connect } from 'react-redux';
 import { homeworkActions } from '../redux/actions/homeworkActions';
-import { CircularProgress, Fab } from '@material-ui/core';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { CircularProgress, Fab } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import Copyright from './Copyright';
 import AttachmentPanel from './AttachmentPanel';
 import Task from './Task';
 import { reduxForm, FieldArray, Field } from 'redux-form';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import CheckIcon from '@material-ui/icons/Check';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import CheckIcon from '@mui/icons-material/Check';
 import { homeworkListActions } from '../redux/actions/homeworkListActions';
 import TeacherInfoBox from './TeacherInfoBox';
 
@@ -111,16 +111,13 @@ var Homework = (props) => {
 	}
 	if (homework)
 		return (
-			<React.Fragment>
+            <React.Fragment>
 				<CssBaseline />
 				<main>
 					{/* Hero unit */}
 					<div className={classes.heroContent}>
 						<div className={classes.backLink}>
-							<IconButton
-								component={Link}
-								to='/dashboard/homeworks'
-							>
+							<IconButton component={Link} to='/dashboard/homeworks' size="large">
 								<ArrowBackIosIcon
 									fontSize='large'
 									className={classes.arrowIcon}
@@ -211,7 +208,7 @@ var Homework = (props) => {
 				</footer>
 				{/* End footer */}
 			</React.Fragment>
-		);
+        );
 	return '';
 };
 Homework = reduxForm({ form: 'homeworkForm' })(Homework);

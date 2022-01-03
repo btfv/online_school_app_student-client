@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import {
-	makeStyles,
-	CssBaseline,
-	Typography,
-	Container,
-	Button,
-} from '@material-ui/core';
+import { CssBaseline, Typography, Container, Button } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import BackLink from './BackLink';
 import { reduxForm, Field } from 'redux-form';
-import { TextField as TextFieldReduxForm } from 'redux-form-material-ui/src';
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions/userActions';
+import TextField from './redux-form_wrappers/TextField';
 
 const THIS_FORM_NAME = 'changePasswordForm';
 
@@ -89,7 +84,7 @@ let StudentProfile = (props) => {
 										required
 										type='password'
 										name='oldPassword'
-										component={TextFieldReduxForm}
+										component={TextField}
 										label='Current Password'
 										variant='outlined'
 									/>
@@ -99,7 +94,7 @@ let StudentProfile = (props) => {
 										required
 										type='password'
 										name='newPassword'
-										component={TextFieldReduxForm}
+										component={TextField}
 										label='New Password'
 										variant='outlined'
 									/>
@@ -109,7 +104,7 @@ let StudentProfile = (props) => {
 										required
 										type='password'
 										name='newPasswordRepeat'
-										component={TextFieldReduxForm}
+										component={TextField}
 										label='New Password Again'
 										variant='outlined'
 									/>

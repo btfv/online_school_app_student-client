@@ -6,10 +6,12 @@ import store from './redux/store';
 import { SnackbarProvider } from 'notistack';
 
 ReactDOM.render(
-	<Provider store={store}>
-		<SnackbarProvider maxSnack={3}>
-			<App />
-		</SnackbarProvider>
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <SnackbarProvider maxSnack={3}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </SnackbarProvider>
+  </Provider>,
+  document.getElementById('root')
 );

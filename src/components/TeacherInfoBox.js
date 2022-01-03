@@ -1,4 +1,5 @@
-import { Avatar, Box, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import config from '../config';
 
@@ -29,11 +30,11 @@ const TeacherInfoBox = function (props) {
 	const { profile, text } = props;
 	const classes = useStyles();
 	return (
-		<Box
+        <Box
 			className={classes.teacherInfoBox}
 			border={2}
 			borderColor='text.secondary'
-			borderRadius={16}
+			borderRadius="16px"
 		>
 			<div className={classes.teacherInfoAvatar}>
 				<Avatar
@@ -59,7 +60,7 @@ const TeacherInfoBox = function (props) {
 				</Typography>
 			</div>
 		</Box>
-	);
+    );
 };
 
 export default TeacherInfoBox;

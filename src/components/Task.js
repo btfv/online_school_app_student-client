@@ -1,11 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { TextField, Checkbox } from 'redux-form-material-ui/src';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { Field } from 'redux-form';
+import TextField from './redux-form_wrappers/TextField';
+import Checkbox from './redux-form_wrappers/Checkbox'
 
 const useStyles = makeStyles((theme) => ({
 	root: {

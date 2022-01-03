@@ -1,17 +1,11 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-	<Route
-		{...rest}
-		render = {props =>
-			localStorage.getItem('user') ? (
-				<Component {...props} />
-			) : (
-				<Redirect
-					to={{ pathname: '/signin', state: { from: props.location } }}
-				/>
-			)
-		}
-	/>
-);
+export const PrivateRoute = ({ children }) => {
+  const user = localStorage.getItem('user');
+  const location = useLocation();
+  if (!user) {
+    return <Navigate to='/signin' state={{ from: location }} />;
+  }
+  return children;
+};

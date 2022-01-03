@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { connect } from 'react-redux';
 import { solutionActions } from '../redux/actions/solutionActions';
-import { CircularProgress } from '@material-ui/core';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { CircularProgress } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import Copyright from './Copyright';
 import AttachmentPanel from './AttachmentPanel';
 import TaskWithAnswer from './TaskWithAnswer';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 import TeacherInfoBox from './TeacherInfoBox';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,16 +51,13 @@ let Solution = (props) => {
 	if (solutionData) {
 		const { solution, homework } = solutionData;
 		return (
-			<React.Fragment>
+            <React.Fragment>
 				<CssBaseline />
 				<main>
 					{/* Hero unit */}
 					<div className={classes.heroContent}>
 						<div className={classes.backLink}>
-							<IconButton
-								component={Link}
-								to='/dashboard/solutions'
-							>
+							<IconButton component={Link} to='/dashboard/solutions' size="large">
 								<ArrowBackIosIcon
 									fontSize='large'
 									className={classes.arrowIcon}
@@ -161,7 +158,7 @@ let Solution = (props) => {
 				</footer>
 				{/* End footer */}
 			</React.Fragment>
-		);
+        );
 	}
 	return <CircularProgress />;
 };
