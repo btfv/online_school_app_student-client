@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import HomeworkCard from './HomeworkCard';
 import { connect } from 'react-redux';
-import { homeworkListActions } from '../redux/actions/homeworkListActions';
+import { homeworkListActions } from '../../redux/actions/homeworkListActions';
 import { CircularProgress } from '@mui/material';
 
 const HomeworksList = (props) => {
@@ -25,22 +26,30 @@ const HomeworksList = (props) => {
     );
   }
   if (loadedHomeworkPreviews) {
-    const homeworks = homeworkPreviews.map((preview) => {
+    const homeworks = homeworkPreviews.map((preview, index) => {
       return (
-        <HomeworkCard
-          title={preview.title}
-          description={preview.description}
-          homeworkPublicId={preview.homeworkPublicId}
-          subject={preview.subject}
-          hasSolution={preview.hasSolution}
-          solutionPublicId={preview.solutionPublicId}
-          creatorName={preview.creatorName}
-          creatorPublicId={preview.creatorPublicId}
-          isChecked={preview.isChecked}
-        />
+        <Grid item key={index} xs={12} sm={6} md={4}>
+          <HomeworkCard
+            title={preview.title}
+            description={preview.description}
+            homeworkPublicId={preview.homeworkPublicId}
+            subject={preview.subject}
+            hasSolution={preview.hasSolution}
+            solutionPublicId={preview.solutionPublicId}
+            creatorName={preview.creatorName}
+            creatorPublicId={preview.creatorPublicId}
+            isChecked={preview.isChecked}
+          />
+        </Grid>
       );
     });
-    return <div>{homeworks}</div>;
+    return (
+      <Container sx={{ py: 8 }} maxWidth='md'>
+        <Grid container spacing={4}>
+          {homeworks}
+        </Grid>
+      </Container>
+    );
   }
   return <div></div>;
 };

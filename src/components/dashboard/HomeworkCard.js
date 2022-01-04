@@ -27,8 +27,11 @@ export default function HomeworkCard(props) {
       solutionPublicId;
 
   return (
-    <Card variant='outlined'>
-      <CardContent>
+    <Card
+      variant='outlined'
+      sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+    >
+      <CardContent sx={{ flexGrow: 1 }}>
         <Typography color='textSecondary' gutterBottom>
           {subject}
         </Typography>

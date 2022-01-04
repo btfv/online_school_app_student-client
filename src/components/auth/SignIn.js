@@ -4,20 +4,21 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from './redux-form_wrappers/TextField';
+import TextField from '../redux-form_wrappers/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Copyright from './Copyright';
+import Copyright from '../Copyright';
 import Link from '@mui/material/Link';
 import { Field, reduxForm } from 'redux-form';
-import { userActions } from '../redux/actions/userActions';
+import { userActions } from '../../redux/actions/userActions';
 import { connect } from 'react-redux';
+import CustomLink from '../CustomLink';
 
 let SignIn = (props) => {
-  const { handleSubmit, loggingIn } = props;
+  const { handleSubmit, loggingIn, login } = props;
 
   return (
     <React.Fragment>
@@ -43,7 +44,7 @@ let SignIn = (props) => {
           <Box
             component='form'
             noValidate
-            onSubmit={handleSubmit(props.login)}
+            onSubmit={handleSubmit(login)}
             sx={{ mt: 1 }}
           >
             <Field
@@ -94,9 +95,9 @@ let SignIn = (props) => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href='#' variant='body2'>
+                <CustomLink to='/signup' variant='body2'>
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </CustomLink>
               </Grid>
             </Grid>
           </Box>
@@ -109,7 +110,6 @@ let SignIn = (props) => {
 const mapStateToProps = (state) => {
   return {
     loggingIn: state.authReducer.loggingIn,
-    error: state.authReducer.error,
   };
 };
 const actionCreators = {

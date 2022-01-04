@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AttachmentIcon from '@mui/icons-material/Attachment';
-import config from '../config';
+import config from '../../config';
 import Link from '@mui/material/Link';
 
 export default function AttachmentPanel(props) {

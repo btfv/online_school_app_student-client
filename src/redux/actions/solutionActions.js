@@ -15,7 +15,6 @@ function getSolution(homeworkPublicId, solutionPublicId) {
 			},
 			(error) => {
 				dispatch(failure(error.toString()));
-				history.push('/dashboard');
 			}
 		);
 	};

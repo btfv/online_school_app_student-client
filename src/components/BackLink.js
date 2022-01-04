@@ -1,21 +1,15 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
-
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Box from '@mui/material/Box';
 
 export default function BackLink(props) {
-  const { history } = props;
-
+  const { onClick } = props;
   return (
-    <div>
-      <IconButton
-        onClick={() => {
-          history.goBack();
-        }}
-        size='large'
-      >
+    <Box position='absolute' float='left' sx={{ ml: 4, mt: 4 }}>
+      <IconButton onClick={onClick} size='large'>
         <ArrowBackIosIcon fontSize='large' />
       </IconButton>
-    </div>
+    </Box>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import './App.scss';
-import SignIn from './components/SignIn';
+import SignIn from './components/auth/SignIn';
 import { PrivateRoute } from './components/PrivateRoute';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import { history } from './redux/store';
 import { withSnackbar } from 'notistack';
 import { connect } from 'react-redux';
@@ -12,6 +12,7 @@ import { homeworkListActions } from './redux/actions/homeworkListActions';
 import { solutionActions } from './redux/actions/solutionActions';
 import { homeworkActions } from './redux/actions/homeworkActions';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SignUp from './components/auth/SignUp';
 
 const theme = createTheme();
 
@@ -61,8 +62,9 @@ let App = (props) => {
         <BrowserRouter>
           <Routes>
             <Route path='/signin' element={<SignIn />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route
-              path='/dashboard'
+              path='/dashboard/*'
               element={
                 <PrivateRoute>
                   <Dashboard />

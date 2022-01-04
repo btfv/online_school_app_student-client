@@ -5,8 +5,9 @@ import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Field } from 'redux-form';
-import TextField from './redux-form_wrappers/TextField';
-import Checkbox from './redux-form_wrappers/Checkbox';
+import TextField from '../redux-form_wrappers/TextField';
+import Checkbox from '../redux-form_wrappers/Checkbox';
+import Box from '@mui/material/Box';
 
 const Task = (props) => {
   const { task, taskIndex } = props;
@@ -43,6 +44,7 @@ const Task = (props) => {
         label='Answer'
         variant='outlined'
         component={TextField}
+        sx={{ m: 2 }}
       />
     );
   };
@@ -61,22 +63,24 @@ const Task = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <Box sx={{ mb: 2 }}>
       <Typography variant='h6'>Task #{taskIndex + 1}</Typography>
       <Typography variant='body1'>{task.condition}</Typography>
-      {(function () {
-        switch (task.taskType) {
-          case 1:
-            return optionsForm(task.optionLabels);
-          case 2:
-            return stringAnswerForm();
-          case 3:
-            return bigAnswerForm();
-          default:
-            return ' ';
-        }
-      })()}
-    </React.Fragment>
+      <Box>
+        {(function () {
+          switch (task.taskType) {
+            case 1:
+              return optionsForm(task.optionLabels);
+            case 2:
+              return stringAnswerForm();
+            case 3:
+              return bigAnswerForm();
+            default:
+              return ' ';
+          }
+        })()}
+      </Box>
+    </Box>
   );
 };
 

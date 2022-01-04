@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { solutionActions } from '../redux/actions/solutionActions';
+import { solutionActions } from '../../redux/actions/solutionActions';
 import { CircularProgress } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Copyright from './Copyright';
+import Copyright from '../Copyright';
 import AttachmentPanel from './AttachmentPanel';
 import TaskWithAnswer from './TaskWithAnswer';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';

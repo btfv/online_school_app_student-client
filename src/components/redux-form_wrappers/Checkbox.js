@@ -1,4 +1,4 @@
-import { Checkbox } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 import createComponent from './createComponent';
 
 export default createComponent(
@@ -13,7 +13,7 @@ export default createComponent(
     ...inputProps,
     ...props,
     checked: value ? true : false,
-    onCheck: (event, isInputChecked) => {
+    onChange: (event, isInputChecked) => {
       onChange(isInputChecked);
       if (onCheck) {
         onCheck(isInputChecked);

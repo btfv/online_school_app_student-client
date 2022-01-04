@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -10,7 +9,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import HomeworksList from './HomeworksList';
-import Homework from './Homework';
+import Homework from '../homework/Homework';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -18,22 +17,17 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import {
-  NavLink,
-  Link,
-  Router,
-  Routes,
-  Route,
-  Redirect,
-} from 'react-router-dom';
-import Solution from './Solution';
-import { history } from '../redux/store';
-import { userService } from '../redux/services/userService';
-import StudentProfile from './StudentProfile';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Solution from '../homework/Solution';
+import { history } from '../../redux/store';
+import { userService } from '../../redux/services/userService';
+import StudentProfile from '../profile/StudentProfile';
+import DashboardRouter from './DashboardRouter';
+import BackLink from '../BackLink';
 
-const drawerWidth = 240;
+export default function DashboardComponent() {
+  let navigate = useNavigate();
 
-export default function DashboardComponent(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -55,7 +49,7 @@ export default function DashboardComponent(props) {
   return (
     <div>
       <AppBar position='static'>
-        <Toolbar>
+        <Toolbar sx={{ flexWrap: 'wrap' }}>
           <IconButton
             edge='start'
             color='inherit'
@@ -65,7 +59,9 @@ export default function DashboardComponent(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6'>Student Client</Typography>
+          <Typography variant='h6' color='inerhit' noWrap sx={{ flexGrow: 1 }}>
+            Student Client
+          </Typography>
 
           <IconButton
             aria-label='account of current user'
@@ -74,6 +70,7 @@ export default function DashboardComponent(props) {
             onClick={handleMenuClick}
             color='inherit'
             size='large'
+            sx={{ my: 1, mx: 1 }}
           >
             <AccountCircle />
           </IconButton>
@@ -93,16 +90,16 @@ export default function DashboardComponent(props) {
             onClose={handleMenuClose}
           >
             <MenuItem
-              onClick={handleMenuClose}
               onClick={() => {
-                history.push('/dashboard/profile');
+                handleMenuClose();
+                navigate('/dashboard/profile');
               }}
             >
               Profile
             </MenuItem>
             <MenuItem
-              onClick={handleMenuClose}
               onClick={() => {
+                handleMenuClose();
                 userService.logout();
               }}
             >
@@ -111,14 +108,7 @@ export default function DashboardComponent(props) {
           </Menu>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant='persistent'
-        anchor='left'
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
+      <Drawer variant='persistent' anchor='left' open={open}>
         <div>
           <IconButton onClick={handleDrawerClose} size='large'>
             {theme.direction === 'ltr' ? (
@@ -130,35 +120,17 @@ export default function DashboardComponent(props) {
         </div>
         <Divider />
         <List>
-          <ListItem
-            component={NavLink}
-            to={'/dashboard/homeworks'}
-            button
-            key='homeworks'
-          >
+          <ListItem component={NavLink} to={'/dashboard/homeworks'} button>
             <ListItemText primary='Homeworks' />
           </ListItem>
         </List>
       </Drawer>
-      <Router history={history}>
-        <Routes>
-          <Route path='/dashboard/homeworks' component={HomeworksList} />
-          <Route
-            exact
-            path='/dashboard/homework/:publicId'
-            component={Homework}
-          />
-          <Route
-            path='/dashboard/homework/:homeworkPublicId/solution/:solutionPublicId'
-            component={Solution}
-          />
-          <Route path='/dashboard/profile' component={StudentProfile} />
-          <Route
-            path='*'
-            render={() => <Navigate to='/dashboard/homeworks' />}
-          />
-        </Routes>
-      </Router>
+      <BackLink
+        onClick={() => {
+          navigate(-1);
+        }}
+      />
+      <DashboardRouter />
     </div>
   );
 }

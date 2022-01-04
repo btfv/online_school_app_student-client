@@ -24,7 +24,6 @@ function getHomework(homeworkPublicId) {
 			},
 			(error) => {
 				dispatch(failure(error.toString()));
-				history.push('/dashboard');
 			}
 		);
 	};
@@ -47,7 +46,6 @@ function sendSolution(values, dispatch, props) {
 		homeworkService.sendSolution(values, homeworkPublicId).then(
 			() => {
 				dispatch(success());
-				history.push('/dashboard');
 			},
 			(error) => {
 				dispatch(failure(error.toString()));
