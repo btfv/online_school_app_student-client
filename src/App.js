@@ -11,7 +11,9 @@ import { userActions } from './redux/actions/userActions';
 import { homeworkListActions } from './redux/actions/homeworkListActions';
 import { solutionActions } from './redux/actions/solutionActions';
 import { homeworkActions } from './redux/actions/homeworkActions';
-import { ThemeProvider } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
 
 let App = (props) => {
   const {
@@ -55,7 +57,7 @@ let App = (props) => {
   }
   return (
     <div className='App'>
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
             <Route path='/signin' element={<SignIn />} />

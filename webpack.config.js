@@ -50,7 +50,6 @@ module.exports = {
       safe: true,
       systemvars: true,
     }),
-    //new webpack.EnvironmentPlugin(['NODE_ENV', 'API_URL']),
   ],
   devServer: {
     historyApiFallback: true,
