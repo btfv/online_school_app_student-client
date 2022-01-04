@@ -11,6 +11,7 @@ import { userActions } from './redux/actions/userActions';
 import { homeworkListActions } from './redux/actions/homeworkListActions';
 import { solutionActions } from './redux/actions/solutionActions';
 import { homeworkActions } from './redux/actions/homeworkActions';
+import { ThemeProvider } from '@mui/styles';
 
 let App = (props) => {
   const {
@@ -54,21 +55,23 @@ let App = (props) => {
   }
   return (
     <div className='App'>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/signin' element={<SignIn />} />
-          <Route
-            path='/dashboard'
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/signin' element={<SignIn />} />
+            <Route
+              path='/dashboard'
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
 
-          <Route path='*' render={() => <Navigate to='/signin' />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path='*' render={() => <Navigate to='/signin' />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 };

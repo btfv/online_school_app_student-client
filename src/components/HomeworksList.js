@@ -1,82 +1,62 @@
 import React, { useEffect } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+
 import HomeworkCard from './HomeworkCard';
 import { connect } from 'react-redux';
 import { homeworkListActions } from '../redux/actions/homeworkListActions';
 import { CircularProgress } from '@mui/material';
 
-const useStyles = makeStyles({
-	root: {
-		'flex-wrap': 'wrap',
-		width: '100%',
-		display: 'flex',
-		'justify-content': 'center',
-	},
-	centerCircle: {
-		position: 'fixed',
-		'align-items': 'center',
-		display: 'flex',
-		padding: 0,
-		height: '90%',
-	},
-});
-
 const HomeworksList = (props) => {
-	const classes = useStyles();
-	const {
-		homeworkPreviews,
-		loadingHomeworkPreviews,
-		loadedHomeworkPreviews,
-		getListOfHomeworks,
-	} = props;
-	if (!loadingHomeworkPreviews && !loadedHomeworkPreviews) {
-		getListOfHomeworks(0);
-	}
-	if (loadingHomeworkPreviews) {
-		return (
-			<div className={classes.root}>
-				<div className={classes.centerCircle}>
-					<CircularProgress />
-				</div>
-			</div>
-		);
-	}
-	if (loadedHomeworkPreviews) {
-		const homeworks = homeworkPreviews.map((preview) => {
-			return (
-				<HomeworkCard
-					title={preview.title}
-					description={preview.description}
-					homeworkPublicId={preview.homeworkPublicId}
-					subject={preview.subject}
-					hasSolution={preview.hasSolution}
-					solutionPublicId={preview.solutionPublicId}
-					creatorName={preview.creatorName}
-					creatorPublicId={preview.creatorPublicId}
-					isChecked={preview.isChecked}
-				/>
-			);
-		});
-		return <div className={classes.root}>{homeworks}</div>;
-	}
-	return <div className={classes.root}></div>;
+  const {
+    homeworkPreviews,
+    loadingHomeworkPreviews,
+    loadedHomeworkPreviews,
+    getListOfHomeworks,
+  } = props;
+  if (!loadingHomeworkPreviews && !loadedHomeworkPreviews) {
+    getListOfHomeworks(0);
+  }
+  if (loadingHomeworkPreviews) {
+    return (
+      <div>
+        <div>
+          <CircularProgress />
+        </div>
+      </div>
+    );
+  }
+  if (loadedHomeworkPreviews) {
+    const homeworks = homeworkPreviews.map((preview) => {
+      return (
+        <HomeworkCard
+          title={preview.title}
+          description={preview.description}
+          homeworkPublicId={preview.homeworkPublicId}
+          subject={preview.subject}
+          hasSolution={preview.hasSolution}
+          solutionPublicId={preview.solutionPublicId}
+          creatorName={preview.creatorName}
+          creatorPublicId={preview.creatorPublicId}
+          isChecked={preview.isChecked}
+        />
+      );
+    });
+    return <div>{homeworks}</div>;
+  }
+  return <div></div>;
 };
 
 const mapStateToProps = (state) => {
-	const {
-		homeworkPreviews,
-		loadedHomeworkPreviews,
-		loadingHomeworkPreviews,
-	} = state.homeworkListReducer;
-	return {
-		homeworkPreviews,
-		loadedHomeworkPreviews,
-		loadingHomeworkPreviews,
-	};
+  const { homeworkPreviews, loadedHomeworkPreviews, loadingHomeworkPreviews } =
+    state.homeworkListReducer;
+  return {
+    homeworkPreviews,
+    loadedHomeworkPreviews,
+    loadingHomeworkPreviews,
+  };
 };
 
 const actionCreators = {
-	getListOfHomeworks: homeworkListActions.getListOfHomeworks,
+  getListOfHomeworks: homeworkListActions.getListOfHomeworks,
 };
 
 export default connect(mapStateToProps, actionCreators)(HomeworksList);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -33,57 +33,7 @@ import StudentProfile from './StudentProfile';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-}));
-
 export default function DashboardComponent(props) {
-  const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -103,12 +53,11 @@ export default function DashboardComponent(props) {
     setOpen(false);
   };
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position='static'>
         <Toolbar>
           <IconButton
             edge='start'
-            className={classes.menuButton}
             color='inherit'
             aria-label='open-drawer'
             onClick={handleDrawerOpen}
@@ -116,9 +65,7 @@ export default function DashboardComponent(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' className={classes.title}>
-            Student Client
-          </Typography>
+          <Typography variant='h6'>Student Client</Typography>
 
           <IconButton
             aria-label='account of current user'
@@ -165,7 +112,6 @@ export default function DashboardComponent(props) {
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
         variant='persistent'
         anchor='left'
         open={open}
@@ -173,7 +119,7 @@ export default function DashboardComponent(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}>
+        <div>
           <IconButton onClick={handleDrawerClose} size='large'>
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
