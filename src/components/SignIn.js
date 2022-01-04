@@ -100,12 +100,12 @@ let SignIn = (props) => {
 						<Grid container>
 							<Grid item xs>
 								<Typography variant='body2'>
-									Login: root
+									Login: stacycruz2
 								</Typography>
 							</Grid>
 							<Grid item xs>
 								<Typography variant='body2'>
-									Password: 12345
+									Password: 1234
 								</Typography>
 							</Grid>
 						</Grid>
